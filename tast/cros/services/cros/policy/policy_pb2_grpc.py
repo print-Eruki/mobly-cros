@@ -6,7 +6,7 @@ import warnings
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from tast.cros.services.cros.policy import policy_pb2 as tast_dot_cros_dot_services_dot_cros_dot_policy_dot_policy__pb2
 
-GRPC_GENERATED_VERSION = '1.71.0'
+GRPC_GENERATED_VERSION = '1.74.0'
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -230,6 +230,16 @@ class PolicyServiceStub(object):
                 '/tast.cros.policy.PolicyService/RefreshRemoteCommands',
                 request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.RefreshPolicies = channel.unary_unary(
+                '/tast.cros.policy.PolicyService/RefreshPolicies',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
+        self.GetPolicyValue = channel.unary_unary(
+                '/tast.cros.policy.PolicyService/GetPolicyValue',
+                request_serializer=tast_dot_cros_dot_services_dot_cros_dot_policy_dot_policy__pb2.GetPolicyValueRequest.SerializeToString,
+                response_deserializer=tast_dot_cros_dot_services_dot_cros_dot_policy_dot_policy__pb2.GetPolicyValueResponse.FromString,
                 _registered_method=True)
         self.FindAndClickRestartNowButton = channel.unary_unary(
                 '/tast.cros.policy.PolicyService/FindAndClickRestartNowButton',
@@ -486,6 +496,18 @@ class PolicyServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def RefreshPolicies(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetPolicyValue(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def FindAndClickRestartNowButton(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -689,6 +711,16 @@ def add_PolicyServiceServicer_to_server(servicer, server):
                     servicer.RefreshRemoteCommands,
                     request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'RefreshPolicies': grpc.unary_unary_rpc_method_handler(
+                    servicer.RefreshPolicies,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'GetPolicyValue': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetPolicyValue,
+                    request_deserializer=tast_dot_cros_dot_services_dot_cros_dot_policy_dot_policy__pb2.GetPolicyValueRequest.FromString,
+                    response_serializer=tast_dot_cros_dot_services_dot_cros_dot_policy_dot_policy__pb2.GetPolicyValueResponse.SerializeToString,
             ),
             'FindAndClickRestartNowButton': grpc.unary_unary_rpc_method_handler(
                     servicer.FindAndClickRestartNowButton,
@@ -1750,6 +1782,60 @@ class PolicyService(object):
             '/tast.cros.policy.PolicyService/RefreshRemoteCommands',
             google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def RefreshPolicies(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/tast.cros.policy.PolicyService/RefreshPolicies',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetPolicyValue(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/tast.cros.policy.PolicyService/GetPolicyValue',
+            tast_dot_cros_dot_services_dot_cros_dot_policy_dot_policy__pb2.GetPolicyValueRequest.SerializeToString,
+            tast_dot_cros_dot_services_dot_cros_dot_policy_dot_policy__pb2.GetPolicyValueResponse.FromString,
             options,
             channel_credentials,
             insecure,

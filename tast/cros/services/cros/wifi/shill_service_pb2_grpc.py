@@ -6,7 +6,7 @@ import warnings
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from tast.cros.services.cros.wifi import shill_service_pb2 as tast_dot_cros_dot_services_dot_cros_dot_wifi_dot_shill__service__pb2
 
-GRPC_GENERATED_VERSION = '1.71.0'
+GRPC_GENERATED_VERSION = '1.74.0'
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -290,26 +290,6 @@ class ShillServiceStub(object):
                 '/tast.cros.wifi.ShillService/SetLoggingConfig',
                 request_serializer=tast_dot_cros_dot_services_dot_cros_dot_wifi_dot_shill__service__pb2.SetLoggingConfigRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                _registered_method=True)
-        self.GetWakeOnWifi = channel.unary_unary(
-                '/tast.cros.wifi.ShillService/GetWakeOnWifi',
-                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-                response_deserializer=tast_dot_cros_dot_services_dot_cros_dot_wifi_dot_shill__service__pb2.GetWakeOnWifiResponse.FromString,
-                _registered_method=True)
-        self.SetWakeOnWifi = channel.unary_unary(
-                '/tast.cros.wifi.ShillService/SetWakeOnWifi',
-                request_serializer=tast_dot_cros_dot_services_dot_cros_dot_wifi_dot_shill__service__pb2.SetWakeOnWifiRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                _registered_method=True)
-        self.CheckLastWakeReason = channel.unary_unary(
-                '/tast.cros.wifi.ShillService/CheckLastWakeReason',
-                request_serializer=tast_dot_cros_dot_services_dot_cros_dot_wifi_dot_shill__service__pb2.CheckLastWakeReasonRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                _registered_method=True)
-        self.WatchDarkResume = channel.unary_stream(
-                '/tast.cros.wifi.ShillService/WatchDarkResume',
-                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-                response_deserializer=tast_dot_cros_dot_services_dot_cros_dot_wifi_dot_shill__service__pb2.WatchDarkResumeResponse.FromString,
                 _registered_method=True)
         self.P2PGroupCreate = channel.unary_unary(
                 '/tast.cros.wifi.ShillService/P2PGroupCreate',
@@ -821,39 +801,6 @@ class ShillServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetWakeOnWifi(self, request, context):
-        """GetWakeOnWifi gets WakeOnWiFi related properties of WiFi device.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def SetWakeOnWifi(self, request, context):
-        """SetWakeOnWifi sets WakeOnWiFi related properties of WiFi device.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def CheckLastWakeReason(self, request, context):
-        """CheckLastWakeReason checks if the last wake reason of WiFi device is as
-        expected.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def WatchDarkResume(self, request, context):
-        """WatchDarkResume is a streaming gRPC which watchers power manager's D-Bus
-        signals until next resume (SuspendDone), and returns the count of dark
-        resumes.
-        Note that it sends back an empty response first to notify the caller that
-        the D-Bus watcher is ready.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def P2PGroupCreate(self, request, context):
         """P2PGroupCreate creates WiFi Direct Group and takes its ownership.
         """
@@ -1244,26 +1191,6 @@ def add_ShillServiceServicer_to_server(servicer, server):
                     servicer.SetLoggingConfig,
                     request_deserializer=tast_dot_cros_dot_services_dot_cros_dot_wifi_dot_shill__service__pb2.SetLoggingConfigRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            ),
-            'GetWakeOnWifi': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetWakeOnWifi,
-                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                    response_serializer=tast_dot_cros_dot_services_dot_cros_dot_wifi_dot_shill__service__pb2.GetWakeOnWifiResponse.SerializeToString,
-            ),
-            'SetWakeOnWifi': grpc.unary_unary_rpc_method_handler(
-                    servicer.SetWakeOnWifi,
-                    request_deserializer=tast_dot_cros_dot_services_dot_cros_dot_wifi_dot_shill__service__pb2.SetWakeOnWifiRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            ),
-            'CheckLastWakeReason': grpc.unary_unary_rpc_method_handler(
-                    servicer.CheckLastWakeReason,
-                    request_deserializer=tast_dot_cros_dot_services_dot_cros_dot_wifi_dot_shill__service__pb2.CheckLastWakeReasonRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            ),
-            'WatchDarkResume': grpc.unary_stream_rpc_method_handler(
-                    servicer.WatchDarkResume,
-                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                    response_serializer=tast_dot_cros_dot_services_dot_cros_dot_wifi_dot_shill__service__pb2.WatchDarkResumeResponse.SerializeToString,
             ),
             'P2PGroupCreate': grpc.unary_unary_rpc_method_handler(
                     servicer.P2PGroupCreate,
@@ -2734,114 +2661,6 @@ class ShillService(object):
             '/tast.cros.wifi.ShillService/SetLoggingConfig',
             tast_dot_cros_dot_services_dot_cros_dot_wifi_dot_shill__service__pb2.SetLoggingConfigRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def GetWakeOnWifi(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/tast.cros.wifi.ShillService/GetWakeOnWifi',
-            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            tast_dot_cros_dot_services_dot_cros_dot_wifi_dot_shill__service__pb2.GetWakeOnWifiResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def SetWakeOnWifi(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/tast.cros.wifi.ShillService/SetWakeOnWifi',
-            tast_dot_cros_dot_services_dot_cros_dot_wifi_dot_shill__service__pb2.SetWakeOnWifiRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def CheckLastWakeReason(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/tast.cros.wifi.ShillService/CheckLastWakeReason',
-            tast_dot_cros_dot_services_dot_cros_dot_wifi_dot_shill__service__pb2.CheckLastWakeReasonRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def WatchDarkResume(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_stream(
-            request,
-            target,
-            '/tast.cros.wifi.ShillService/WatchDarkResume',
-            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            tast_dot_cros_dot_services_dot_cros_dot_wifi_dot_shill__service__pb2.WatchDarkResumeResponse.FromString,
             options,
             channel_credentials,
             insecure,

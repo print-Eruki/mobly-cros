@@ -6,7 +6,7 @@ import warnings
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from tast.cros.services.cros.bluetooth import bluetooth_ui_service_pb2 as tast_dot_cros_dot_services_dot_cros_dot_bluetooth_dot_bluetooth__ui__service__pb2
 
-GRPC_GENERATED_VERSION = '1.71.0'
+GRPC_GENERATED_VERSION = '1.74.0'
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 

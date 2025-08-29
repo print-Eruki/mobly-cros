@@ -37,6 +37,7 @@ USED_SERVICES=(
 "cros/services/cros/audio"
 "cros/services/cros/policy"
 "cros/services/cros/inputs"
+"cros/services/cros/printer"
 )
 
 for service in "${USED_SERVICES[@]}"; do

@@ -122,17 +122,20 @@ class GAIAEnrollUsingChromeRequest(google.protobuf.message.Message):
     USERNAME_FIELD_NUMBER: builtins.int
     PASSWORD_FIELD_NUMBER: builtins.int
     DMSERVERURL_FIELD_NUMBER: builtins.int
+    DONT_INSTALL_USER_TEST_EXTENSION_FIELD_NUMBER: builtins.int
     username: builtins.str
     password: builtins.str
     dmserverURL: builtins.str
+    dont_install_user_test_extension: builtins.bool
     def __init__(
         self,
         *,
         username: builtins.str = ...,
         password: builtins.str = ...,
         dmserverURL: builtins.str = ...,
+        dont_install_user_test_extension: builtins.bool = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["dmserverURL", b"dmserverURL", "password", b"password", "username", b"username"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["dmserverURL", b"dmserverURL", "dont_install_user_test_extension", b"dont_install_user_test_extension", "password", b"password", "username", b"username"]) -> None: ...
 
 global___GAIAEnrollUsingChromeRequest = GAIAEnrollUsingChromeRequest
 
@@ -143,17 +146,20 @@ class GAIAEnrollAndLoginUsingChromeRequest(google.protobuf.message.Message):
     USERNAME_FIELD_NUMBER: builtins.int
     PASSWORD_FIELD_NUMBER: builtins.int
     DMSERVERURL_FIELD_NUMBER: builtins.int
+    EXTRA_ARGS_FIELD_NUMBER: builtins.int
     username: builtins.str
     password: builtins.str
     dmserverURL: builtins.str
+    extra_args: builtins.str
     def __init__(
         self,
         *,
         username: builtins.str = ...,
         password: builtins.str = ...,
         dmserverURL: builtins.str = ...,
+        extra_args: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["dmserverURL", b"dmserverURL", "password", b"password", "username", b"username"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["dmserverURL", b"dmserverURL", "extra_args", b"extra_args", "password", b"password", "username", b"username"]) -> None: ...
 
 global___GAIAEnrollAndLoginUsingChromeRequest = GAIAEnrollAndLoginUsingChromeRequest
 
@@ -634,3 +640,33 @@ class WaitRemoteCommandAckedRequest(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["command_id", b"command_id"]) -> None: ...
 
 global___WaitRemoteCommandAckedRequest = WaitRemoteCommandAckedRequest
+
+@typing.final
+class GetPolicyValueRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    POLICY_NAME_FIELD_NUMBER: builtins.int
+    policy_name: builtins.str
+    def __init__(
+        self,
+        *,
+        policy_name: builtins.str = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["policy_name", b"policy_name"]) -> None: ...
+
+global___GetPolicyValueRequest = GetPolicyValueRequest
+
+@typing.final
+class GetPolicyValueResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    JSON_VALUE_FIELD_NUMBER: builtins.int
+    json_value: builtins.str
+    def __init__(
+        self,
+        *,
+        json_value: builtins.str = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["json_value", b"json_value"]) -> None: ...
+
+global___GetPolicyValueResponse = GetPolicyValueResponse

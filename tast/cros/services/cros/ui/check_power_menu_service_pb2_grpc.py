@@ -6,7 +6,7 @@ import warnings
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from tast.cros.services.cros.ui import check_power_menu_service_pb2 as tast_dot_cros_dot_services_dot_cros_dot_ui_dot_check__power__menu__service__pb2
 
-GRPC_GENERATED_VERSION = '1.71.0'
+GRPC_GENERATED_VERSION = '1.74.0'
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -56,6 +56,11 @@ class PowerMenuServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
                 response_deserializer=tast_dot_cros_dot_services_dot_cros_dot_ui_dot_check__power__menu__service__pb2.PowerMenuItemResponse.FromString,
                 _registered_method=True)
+        self.Lock = channel.unary_unary(
+                '/tast.cros.ui.PowerMenuService/Lock',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                _registered_method=True)
 
 
 class PowerMenuServiceServicer(object):
@@ -78,9 +83,9 @@ class PowerMenuServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def PowerMenuPresent(self, request, context):
-        """PowerMenuPresent returns a bool to indicate whether the presence of a power menu
-        is true. Chrome instance is necessary prior to the deployment. For this reason,
-        NewChrome must be called in prior, but not CloseChrome.
+        """PowerMenuPresent returns a bool to indicate whether the presence of a power
+        menu is true. Chrome instance is necessary prior to the deployment. For
+        this reason, NewChrome must be called in prior, but not CloseChrome.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -88,6 +93,16 @@ class PowerMenuServiceServicer(object):
 
     def PowerMenuItem(self, request, context):
         """PowerMenuItem returns a slice which contains names of power menu items.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def Lock(self, request, context):
+        """Lock performs the operation to lock the screen. Implementing Lock
+        would be equivalent to pressing "Search+L" at a login session.
+        Note, NewChrome or ReuseChrome needs to be called in prior, but not
+        CloseChrome.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -115,6 +130,11 @@ def add_PowerMenuServiceServicer_to_server(servicer, server):
                     servicer.PowerMenuItem,
                     request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                     response_serializer=tast_dot_cros_dot_services_dot_cros_dot_ui_dot_check__power__menu__service__pb2.PowerMenuItemResponse.SerializeToString,
+            ),
+            'Lock': grpc.unary_unary_rpc_method_handler(
+                    servicer.Lock,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -226,6 +246,33 @@ class PowerMenuService(object):
             '/tast.cros.ui.PowerMenuService/PowerMenuItem',
             google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             tast_dot_cros_dot_services_dot_cros_dot_ui_dot_check__power__menu__service__pb2.PowerMenuItemResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def Lock(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/tast.cros.ui.PowerMenuService/Lock',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,
